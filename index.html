@@ -24,6 +24,8 @@
         
       var dmp = new diff_match_patch();
       dmp.Diff_Timeout = 0;
+      dmp.Ignore_List = [' ','　'];
+      // dmp.Ignore_List = [' ','　','（',"\\(",'）',"\\)"];
 
       // No warmup loop since it risks triggering an 'unresponsive script' dialog
       // in client-side JavaScript
