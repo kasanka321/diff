@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+  <TITLE>テキスト比較</TITLE>
+  <link rel="stylesheet" href="diff.css">
+  <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript" SRC="diff_match_patch_uncompressed_custom.js"></SCRIPT>
+
+  <SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript">
+
+    function clear_text() {
+      document.getElementById("text1").value = '';
+      document.getElementById("text2").value = '';
+    }
+
+    function launch() {
+      var text1 = document.getElementById('text1').value;
+      var text2 = document.getElementById('text2').value;
+
+      if(!text1 || !text2){
+        let temptext = 'テキストの比較結果がここに表示されます';
+        document.getElementById('outputdiv').innerHTML = temptext;
+        return;
+      }
+        
+      var dmp = new diff_match_patch();
+      dmp.Diff_Timeout = 0;
+
+      // No warmup loop since it risks triggering an 'unresponsive script' dialog
+      // in client-side JavaScript
+      var d = dmp.diff_main(text1, text2, false);
+
+      var ds = dmp.diff_prettyHtml(d);
+      document.getElementById('outputdiv').innerHTML = ds;
+    }  
+  </SCRIPT>
+
+</HEAD>
+
+<BODY>
+<H3>テキスト比較</H3>
+※<ins>修正後の言葉は緑、</ins><del>削除した言葉は赤</del>で表示されます
+<FORM action="#" onsubmit="return false;">
+<TABLE WIDTH="100%"><TR>
+  <TD WIDTH="49%">
+  <H3>修正前テキスト</H3>
+<TEXTAREA ID="text1" STYLE="width: 97%" ROWS=10 placeholder="&#13;修正前テキストを貼り付けて下さい">
+  下記の文章を比較してください。
+  吾輩は猫である。名前はまだない。
+  　どこで生れたか頓（とん）と見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。吾輩はここで始めて人間というものを見た。しかもあとで聞くとそれは書生という人間中で一番獰悪（どうあく）な種族であったそうだ。この書生というのは時々我々を捕（つかま）えて煮て食うという話である。</TEXTAREA></TD>
+  <TD WIDTH="49%">
+  <H3>修正後テキスト</H3>
+<TEXTAREA ID="text2" STYLE="width: 97%" ROWS=10 placeholder="&#13;修正後テキストを貼り付けて下さい">
+  下記の文章を比較したってや。
+  吾輩は猫やで。名前はまだない。
+  　どこで生れたか頓（とん）と見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いとった事だけは記憶しとる。吾輩はここで始めて人間っちゅうものを見た。しかもあとで聞くとそれは書生っちゅう人間中で一番獰悪（どうあく）な種族やったみたいやで。この書生っちゅうのはちょいちょいウチらを捕（つかま）えて煮て食うっちゅう話やで。
+</TEXTAREA></TD>
+</TR></TABLE>
+
+
+<P>
+  &emsp;
+  <INPUT TYPE="button" onClick="launch();" VALUE=" 比較する ">
+  &emsp;
+  <INPUT TYPE="button" onClick="clear_text();" VALUE=" クリア ">
+</P>
+</FORM>
+
+<DIV ID="outputdiv"></DIV>
+
+</BODY>
+</HTML>

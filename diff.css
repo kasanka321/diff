@@ -1,0 +1,25 @@
+#outputdiv {
+  margin: 0 auto;
+  overflow-y:auto;
+  width: 80%;
+  height: 320px;
+}
+
+textarea {
+  font-size: 98%;
+  font-family:'ヒラギノ角ゴ Pro W3','Hiragino Kaku Gothic Pro','メイリオ',Meiryo,'ＭＳ Ｐゴシック',sans-serif;
+}
+
+h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* カスタマイズで色変更 */
+ins {
+  background-color: #97f295 !important;
+  text-decoration: none !important;
+}
+del {
+  background-color: #ffb6ba !important;
+}
