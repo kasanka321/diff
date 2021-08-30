@@ -175,7 +175,7 @@ diff_match_patch.prototype.diff_main = function(text1, text2, opt_checklines,
   if(this.Ignore_List.length == 0) return diffs;
 
   let ignore_diff = [];
-  var reg = new RegExp('(' + this.Ignore_List.join('|') + ')', 'gi');
+  var reg = new RegExp('^(' + this.Ignore_List.join('|') + ')$', 'gi');
 
   diffs.forEach(function(element){
     if(!element[1].match(reg)){
